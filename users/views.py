@@ -1,10 +1,7 @@
 from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.response import Response
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from rest_framework_simplejwt.views import TokenObtainPairView
 from users.serializers import UserSerializer, CustomTokenObtainPairSerializer
 
 
@@ -22,3 +19,11 @@ class UserView(APIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+class mockView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        print(request.user)
+        return Response("get 요청")
