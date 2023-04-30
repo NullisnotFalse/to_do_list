@@ -44,6 +44,8 @@ class ArticleDetailView(APIView):
                 is_complete = serializer.validated_data.get("is_complete")
                 if is_complete and article.completion_at == None:
                     article.completion_at = datetime.datetime.now()
+                elif not is_complete:
+                    article.completion_at = None
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
             else:
