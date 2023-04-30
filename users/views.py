@@ -21,9 +21,12 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
 
-class mockView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
+# class mockView(APIView):
+#     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request):
-        print(request.user)
-        return Response("get 요청")
+#     def get(self, request):
+#         print(request.user)
+#         user = request.user
+#         user.is_admin = True
+#         user.save()
+#         return Response("get 요청")
