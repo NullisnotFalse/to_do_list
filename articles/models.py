@@ -7,7 +7,7 @@ from users.models import User
 
 class Article(models.Model):
     class Meta:
-        db_table = "article"
+        db_table = "Todolist"
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
