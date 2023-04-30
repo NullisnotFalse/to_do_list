@@ -3,5 +3,10 @@ from articles import views
 
 
 urlpatterns = [
-    # path("signup/", views.UserView.as_view(), name="user_view"),
+    path("", views.ArticleView.as_view(), name="article_view"),
+    path(
+        "<int:article_id>/",
+        views.ArticleDetailView.as_view(),
+        name="article_detail_view",
+    ),
 ]
