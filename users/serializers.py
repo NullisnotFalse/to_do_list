@@ -15,11 +15,13 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-    def update(self, validated_data):
-        user = super().create(validated_data)
-        password = user.password
-        user.set_password(password)
-        user.save()
+    def update(self, instance, validated_data):
+        email = instance.email
+        user = super().update(instance, validated_data)
+        password = validated_data.get("password")
+        if password:
+            user.set_password(password)
+            user.save()
         return user
 
 
@@ -28,4 +30,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
         token["email"] = user.email
+        token["name"] = user.name
+        token["gender"] = user.gender
+        token["age"] = user.age
+        token["introduction"] = user.introduction
         return token
