@@ -19,6 +19,12 @@ class ArticleCreateSerializer(serializers.ModelSerializer):
         fields = ("title", "content")
 
 
+class ArticleUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ("title", "content", "is_complete")
+
+
 class ArticleListSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
 
